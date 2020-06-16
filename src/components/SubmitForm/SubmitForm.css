@@ -1,0 +1,29 @@
+.submitBox {
+    margin: 1rem;
+    font-size: .8rem;
+    border-radius: 5px;
+    border: .5px solid #1c1a83;
+    color: #252525;
+    width: 150px;
+    height: 25px;
+}
+
+.submitBox:focus {
+    border: 1px solid #252525;
+}
+
+.submitButton {
+    color: #605ece;
+    cursor: pointer;
+    font-size: .8em;
+    background: #fff;
+    border: .5px solid #1c1a83;
+    border-radius: 5px;
+    height: 30px;
+    margin: 10px;
+}
+
+.submitButton:hover {
+    border: 1.5px solid #000000;
+    color: #000000;
+}

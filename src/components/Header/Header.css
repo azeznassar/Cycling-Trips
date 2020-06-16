@@ -1,0 +1,10 @@
+.appHeader {
+    padding: 5px;
+    text-align: center;
+}
+
+.headerTitle {
+    text-decoration: none;
+    color: #302f80;
+    font-size: 2rem;
+}
