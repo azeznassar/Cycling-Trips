@@ -2,7 +2,7 @@ import React from 'react';
 import {CyclingTripTracker,localStorageKey} from './main'
 import Header from './components/Header/Header';
 import SubmitForm from './components/SubmitForm/SubmitForm';
-
+import SubmittedTrip from './components/SubmittedTrips/SubmittedTrip';
 
 export default class App extends React.Component {
 
@@ -21,7 +21,7 @@ export default class App extends React.Component {
             
             <Header />
             <SubmitForm app={this.state.trackerInstance}/>
-
+            <SubmittedTrip app={this.state.trackerInstance}/>
             
             Hello {this.props.name}!
 

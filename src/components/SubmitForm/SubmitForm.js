@@ -1,10 +1,12 @@
 import React from 'react';
 import './SubmitForm.css';
-import { CyclingTripTracker } from '../../main'
+import SubmittedTrip from '../SubmittedTrips/SubmittedTrip';
+
+//import { CyclingTripTracker } from '../../main'
 
 //let theCyclingTripTracker = new CyclingTripTracker()
 
-class InputForm extends React.Component {
+class SubmitForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -56,14 +58,23 @@ class InputForm extends React.Component {
             distanceInput: '',
             locationInput: '',
             elevationInput: '',
-            newTrip: trips
+            newTrip: trips,
+            submitted: true
         });
     }
 
 
     render() {
+        let trips;
+        if (this.state.submitted) {
+
+            trips = <SubmittedTrip app={this.props.app}/>
+        } else {
+            trips = "Submit a Trip Above"
+        }
 
         return (
+            <div>
             <div className="submitSection">
 
                 <form className="inputForm">
@@ -95,6 +106,8 @@ class InputForm extends React.Component {
                 {this.state.locationInput}
                 {this.state.elevationInput}
             </div>
+                {trips}
+            </div>
         );
 
     }
@@ -102,4 +115,4 @@ class InputForm extends React.Component {
 
 
 
-export default InputForm;
+export default SubmitForm;

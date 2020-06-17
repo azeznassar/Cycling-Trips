@@ -1,0 +1,19 @@
+.trips {
+    border: 2px solid #18181d;
+    border-radius: 2px;
+    padding: 1rem;
+    width: 50%;
+    margin: 0 auto;
+    background-color: rgb(221, 241, 253);
+}
+
+.trip {
+    border: 2px solid #18181d;
+    background-color: rgb(208, 236, 255);
+    margin: 1rem;
+    font-size: 1.1rem;
+}
+
+.trip p {
+    margin: .4rem;
+}
