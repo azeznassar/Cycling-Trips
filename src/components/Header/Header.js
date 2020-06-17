@@ -1,6 +1,5 @@
 import React from 'react';
 import './Header.css';
-import SubmitForm from '../SubmitForm/SubmitForm';
 
 const Header = () => {
     return (
@@ -9,7 +8,6 @@ const Header = () => {
                 <h1 className="headerTitle">Cycling Trip Tracker</h1>
             </div>
             
-            <SubmitForm />
         </div>
     );
 };

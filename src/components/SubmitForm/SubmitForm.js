@@ -2,7 +2,7 @@ import React from 'react';
 import './SubmitForm.css';
 import { CyclingTripTracker } from '../../main'
 
-let theCyclingTripTracker = new CyclingTripTracker()
+//let theCyclingTripTracker = new CyclingTripTracker()
 
 class InputForm extends React.Component {
     constructor(props) {
@@ -24,27 +24,30 @@ class InputForm extends React.Component {
     }
 
     handleNameChange(e) {
-        this.setState({nameInput: e.target.value});
+        this.setState({ nameInput: e.target.value });
     }
 
     handleDistanceChange(e) {
-        this.setState({distanceInput: e.target.value});
+        this.setState({ distanceInput: e.target.value });
     }
 
     handleLocationChange(e) {
-        this.setState({locationInput: e.target.value});
+        this.setState({ locationInput: e.target.value });
     }
 
     handleElevationChange(e) {
-        this.setState({elevationInput: e.target.value});
+        this.setState({ elevationInput: e.target.value });
     }
 
 
     handleSubmit(e) {
         e.preventDefault();
-        theCyclingTripTracker.addTrip(this.state.nameInput, parseInt(this.state.distanceInput, 10), this.state.locationInput, this.state.elevationInput)
+        //theCyclingTripTracker.addTrip(this.state.nameInput, parseInt(this.state.distanceInput, 10), this.state.locationInput, this.state.elevationInput)
+        this.props.app.addTrip(this.state.nameInput, parseInt(this.state.distanceInput, 10), this.state.locationInput, this.state.elevationInput)
 
-        let trips = theCyclingTripTracker.allMyTrips
+        //debugging
+        //let trips = theCyclingTripTracker.allMyTrips
+        let trips = this.props.app.allMyTrips
         console.log(trips[0])
         console.log(trips[1])
 
@@ -61,19 +64,31 @@ class InputForm extends React.Component {
     render() {
 
         return (
-            <div>
+            <div className="submitSection">
 
                 <form className="inputForm">
-                    <label htmlFor="name">Name</label>
-                    <input className="submitBox" id="name" type="text" value={this.state.nameInput} onChange={this.handleNameChange} />
-                    <label htmlFor="distance">Distance</label>
-                    <input className="submitBox" id="distance" type="text" value={this.state.distanceInput} onChange={this.handleDistanceChange} />
-                    <label htmlFor="location">Location</label>
-                    <input className="submitBox" id="location" type="text" value={this.state.locationInput} onChange={this.handleLocationChange} />
-                    <label htmlFor="elevation">Elevation</label>
-                    <input className="submitBox" id="elevation" type="text" value={this.state.elevationInput} onChange={this.handleElevationChange} />
-                    <input type="submit" className="submitButton" onClick={this.handleSubmit} value="Submit Trip" />
+
+                    <div className="inputSection">
+                        <label htmlFor="name">Name</label>
+                        <input className="submitBox" id="name" type="text" placeholder="e.g. My First Cycling Trip" value={this.state.nameInput} onChange={this.handleNameChange} />
+                    </div>
+
+                    <div className="inputSection">
+                        <label htmlFor="distance">Distance (Metres)</label>
+                        <input className="submitBox" id="distance" type="text" placeholder="e.g. 3000" value={this.state.distanceInput} onChange={this.handleDistanceChange} />
+                    </div>
+
+                    <div className="inputSection">
+                        <label htmlFor="location">Location</label>
+                        <input className="submitBox" id="location" type="text" placeholder="e.g. 32 Ferry Road" value={this.state.locationInput} onChange={this.handleLocationChange} />
+                    </div>
+
+                    <div className="inputSection">
+                        <label htmlFor="elevation">Elevation</label>
+                        <input className="submitBox" id="elevation" type="text" placeholder="e.g. Downhill" value={this.state.elevationInput} onChange={this.handleElevationChange} />
+                    </div>
                 </form>
+                <input type="submit" className="submitButton" onClick={this.handleSubmit} value="Submit New Trip" />
 
                 {this.state.nameInput}
                 {this.state.distanceInput}
@@ -81,8 +96,10 @@ class InputForm extends React.Component {
                 {this.state.elevationInput}
             </div>
         );
-        
+
     }
 }
+
+
 
 export default InputForm;

@@ -1,7 +1,7 @@
 .submitBox {
-    margin: 1rem;
+    margin: .1rem;
     font-size: .8rem;
-    border-radius: 5px;
+    border-radius: 2px;
     border: .5px solid #1c1a83;
     color: #252525;
     width: 150px;
@@ -13,17 +13,65 @@
 }
 
 .submitButton {
-    color: #605ece;
+    color: #60b4ec;
     cursor: pointer;
     font-size: .8em;
-    background: #fff;
-    border: .5px solid #1c1a83;
-    border-radius: 5px;
+    font-weight: 200;
+    background: rgb(22, 19, 19);
+    border: .5px solid #60b4ec;
+    border-radius: 3px;
     height: 30px;
     margin: 10px;
 }
 
 .submitButton:hover {
-    border: 1.5px solid #000000;
-    color: #000000;
+    background: rgb(71, 72, 83);
+    color: #3894d1;
 }
+
+.inputForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.inputSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputSection label {
+    font-size: 13px;
+    font-weight: 500;
+    margin: .2rem;
+}
+
+.submitSection {
+    border: 2px solid #18181d;
+    border-radius: 2px;
+    padding: 1rem;
+    width: 50%;
+    margin: 0 auto;
+    background-color: rgb(221, 241, 253);
+}
+
+@media only screen and (max-width: 1400px) {
+    .submitSection {
+
+        width: 80%;
+    }
+  }
+
+
+  @media only screen and (max-width: 800px) {
+
+    .inputForm {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .inputSection {
+        margin: 0 auto;
+    }
+
+  }
