@@ -66,3 +66,8 @@ input[type="checkbox"]{
 .delete a:hover {
     color: #d3e7ff;
 }
+
+.sortTrips {
+    display: flex;
+    justify-content: center;
+}

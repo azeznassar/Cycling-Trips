@@ -48,9 +48,9 @@ class SubmitForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.app.addTrip(this.state.nameInput, parseInt(this.state.distanceInput, 10), this.state.locationInput, this.state.elevationInput)
+
+
         let trips = this.props.app.allMyTrips
-        console.log(trips[0])
-        console.log(trips[1])
 
         this.setState({
             nameInput: '',
@@ -97,7 +97,7 @@ class SubmitForm extends React.Component {
                         <input className="submitBox" id="elevation" type="text" placeholder="e.g. Downhill" value={this.state.elevationInput} onChange={this.handleElevationChange} />
                     </div>
                 </form>
-                <input type="submit" className="submitButton" onClick={this.handleSubmit} value="Submit New Trip" />
+                <button onClick={this.handleSubmit}>Submit New Trip</button>
             </div>
                 {trips}
             </div>

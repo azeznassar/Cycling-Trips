@@ -5,7 +5,7 @@ class SubmittedTrip extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            trips: this.props.app.allMyTrips,
+            trips: this.props.app.getAllTrips(),
             completed: false
         };
         this.handleUpdate = this.handleUpdate.bind(this);
@@ -19,13 +19,25 @@ class SubmittedTrip extends React.Component {
 
     delete(tripId){
         this.props.app.removeTrip(tripId)
-        this.setState({ trips: this.props.app.allMyTrips });
+        this.setState({ trips: this.props.app.getAllTrips() });
+    }
+
+    handleShowAll() {
+        this.setState({ trips: this.props.app.getAllTrips() });
+    }
+
+    handleShowActive() {
+        this.setState({ trips: this.props.app.getActiveTrips() });
+    }
+
+    handleShowCompleted() {
+        this.setState({ trips: this.props.app.getCompletedTrips() });
     }
 
     render() {
         //TODO: change html elements, css for the trips
         return (
-
+            <div>
              <div className="trips">
 
                     {this.state.trips.map((trip) =>
@@ -48,11 +60,16 @@ class SubmittedTrip extends React.Component {
                         </div>
                     )}
             </div>
+
+                <div className="sortTrips">
+                    <button onClick={() => this.handleShowAll()}>Show All</button>
+                    <button onClick={() => this.handleShowActive()}>Show Active</button>
+                    <button onClick={() => this.handleShowCompleted()}>Show Completed</button>
+                </div>
+            </div>
         );
 
     }
 }
-
-
 
 export default SubmittedTrip;

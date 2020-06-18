@@ -12,7 +12,7 @@
     border: 1px solid #252525;
 }
 
-.submitButton {
+button {
     color: #60b4ec;
     cursor: pointer;
     font-size: .8em;
@@ -24,7 +24,7 @@
     margin: 10px;
 }
 
-.submitButton:hover {
+button:hover {
     background: rgb(71, 72, 83);
     color: #3894d1;
 }

@@ -42,6 +42,8 @@ class Trip implements iTrip {
         this.completed = false
     }
 
+    //Calculate distance to KMs and miles
+
     calcDistance(): void {
         const formulaKilometers: number = Distance.Kilometers
         const formulaMiles: number = Distance.Miles
@@ -53,34 +55,26 @@ class Trip implements iTrip {
 
 class CyclingTripTracker {
     protected allMyTrips: any
-    protected editedTrip: Trip
-    protected beforeEditNameCache: string
-    protected beforeEditDistanceCache: number
-    protected beforeEditLocationCache: string
-    protected beforeEditElevationCache: string
     protected idCount: number
 
     constructor() {
         this.allMyTrips = []
-        this.editedTrip = null
-        this.beforeEditNameCache = ''
-        this.beforeEditDistanceCache = 0
-        this.beforeEditLocationCache = ''
-        this.beforeEditElevationCache = ''
         this.idCount = Value.One
     }
 
-    addTrip(newName: string, newDistance: number, newLocation: string, newElevation: string): string {
+    // Add Trip
+
+    addTrip(newName: string, newDistance: number, newLocation: string, newElevation: string): void {
         newName = newName.trim()
         newLocation = newLocation.trim()
         newElevation = newElevation.trim()
 
         if (!newName || !newDistance || !newLocation) {
-            return "Please fill in all the fields"
+            return
         }
 
         if (newDistance <= Value.Zero || typeof newDistance != "number") {
-            return "Please fill in a valid distance in meters, this must be a numerical value"
+            return 
         }
 
         const tripId: number = this.idCount
@@ -89,6 +83,8 @@ class CyclingTripTracker {
         trip.calcDistance()
         this.allMyTrips.push(trip)
     }
+
+    // Sorts
 
     getAllTrips(): Trip[] {
         return this.allMyTrips
@@ -103,6 +99,9 @@ class CyclingTripTracker {
         let activeTrips: Trip[] = this.allMyTrips.filter(trip => !trip.completed)
         return activeTrips
     }
+    
+
+    //Local Storage
 
     saveTrips(): void {
         localStorage.setItem(localStorageKey, JSON.stringify(this.allMyTrips))
@@ -112,59 +111,17 @@ class CyclingTripTracker {
         return JSON.parse(localStorage.getItem(localStorageKey) || '[]')
     }
 
-    calcActiveTrips(): number {
-        return this.getActiveTrips().length
-    }
-
-    getAllCompleted(): boolean {
-        return this.calcActiveTrips() === Value.Zero
-    }
-
-    setAllCompleted(): void {
-        this.allMyTrips.forEach(trip => trip.completed = true)
-    }
+    //Delete Trip 
 
     removeTrip(targetTripId: number): void {
         const tripIndex: number = this.allMyTrips.findIndex(task => task.id === targetTripId)
         this.allMyTrips.splice(tripIndex, Value.One)
     }
 
-    updateTrip(trip: Trip): void {
-        this.beforeEditNameCache = trip.name
-        this.beforeEditDistanceCache = trip.distance
-        this.beforeEditLocationCache = trip.location
-        this.beforeEditElevationCache = trip.elevation
-        this.editedTrip = trip
-    }
+    //Toggle Trip Status
 
     updateStatus(trip: Trip): void  {
         trip.completed = !trip.completed
     }
 
-    finalizeUpdate(trip: Trip): void {
-
-        if (!trip) {
-            return
-        }
-
-        this.editedTrip = null
-        trip.name = trip.name.trim()
-        trip.location = trip.location.trim()
-
-        if (!trip.name || !trip.location || !trip.distance) {
-            this.removeTrip(trip.id)
-        }
-    }
-
-    cancelUpdate(trip: Trip): void {
-        this.editedTrip = null
-        trip.name = this.beforeEditNameCache
-        trip.distance = this.beforeEditDistanceCache
-        trip.location = this.beforeEditLocationCache
-        trip.elevation = this.beforeEditElevationCache
-    }
-
-    removeCompleted(): void {
-        this.allMyTrips = this.getActiveTrips()
-    }
 }
