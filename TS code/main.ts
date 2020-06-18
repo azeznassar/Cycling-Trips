@@ -137,6 +137,10 @@ class CyclingTripTracker {
         this.editedTrip = trip
     }
 
+    updateStatus(trip: Trip): void  {
+        trip.completed = !trip.completed
+    }
+
     finalizeUpdate(trip: Trip): void {
 
         if (!trip) {
