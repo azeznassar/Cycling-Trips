@@ -15,5 +15,22 @@
 }
 
 .trip p {
-    margin: .4rem;
+    margin: .5rem;
 }
+
+#status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="checkbox"]{
+    width: 15px;
+    height: 15px;
+}
+
+@media only screen and (max-width: 1400px) {
+    .trips {
+        width: 80%;
+    }
+  }

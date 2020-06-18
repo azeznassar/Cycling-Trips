@@ -6,4 +6,4 @@ import './index.css';
 //npm run dev : runs app on localhost:1234
 //npm run build : bundles files to /dist for production
 
-ReactDOM.render(<App name="Azez Nassar"/>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));

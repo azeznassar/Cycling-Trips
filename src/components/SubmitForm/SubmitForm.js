@@ -30,7 +30,14 @@ class SubmitForm extends React.Component {
     }
 
     handleDistanceChange(e) {
-        this.setState({ distanceInput: e.target.value });
+        let distance = e.target.value
+
+        if (!Number(distance)) {
+            alert("Please only input digits in the distance field")
+            return
+        }
+
+        this.setState({ distanceInput: distance });
     }
 
     handleLocationChange(e) {
@@ -45,8 +52,20 @@ class SubmitForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         //theCyclingTripTracker.addTrip(this.state.nameInput, parseInt(this.state.distanceInput, 10), this.state.locationInput, this.state.elevationInput)
-        this.props.app.addTrip(this.state.nameInput, parseInt(this.state.distanceInput, 10), this.state.locationInput, this.state.elevationInput)
 
+        // let distance = parseInt(this.state.distanceInput, 10)
+
+        // let telephone = e.target.value;
+
+        // if (!Number(telephone)) {
+        //     return;
+        // }
+        // if (typeof(distance) === Number) {
+        //     alert("Input digits only! (In metres)",typeof(distance))
+        this.props.app.addTrip(this.state.nameInput, parseInt(this.state.distanceInput, 10), this.state.locationInput, this.state.elevationInput)
+        // } else {
+        //     alert("Input digits only! (In metres)")
+        // }
         //debugging
         //let trips = theCyclingTripTracker.allMyTrips
         let trips = this.props.app.allMyTrips
@@ -81,7 +100,7 @@ class SubmitForm extends React.Component {
 
                     <div className="inputSection">
                         <label htmlFor="name">Name</label>
-                        <input className="submitBox" id="name" type="text" placeholder="e.g. My First Cycling Trip" value={this.state.nameInput} onChange={this.handleNameChange} />
+                        <input className="submitBox" id="name" type="text" placeholder="e.g. My Cycling Trip" value={this.state.nameInput} onChange={this.handleNameChange} />
                     </div>
 
                     <div className="inputSection">
@@ -100,11 +119,6 @@ class SubmitForm extends React.Component {
                     </div>
                 </form>
                 <input type="submit" className="submitButton" onClick={this.handleSubmit} value="Submit New Trip" />
-
-                {this.state.nameInput}
-                {this.state.distanceInput}
-                {this.state.locationInput}
-                {this.state.elevationInput}
             </div>
                 {trips}
             </div>

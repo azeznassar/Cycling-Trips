@@ -5,15 +5,28 @@ class SubmittedTrip extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            trips: this.props.app.allMyTrips
+            trips: this.props.app.allMyTrips,
+            completed: false
         };
-
+        this.handleUpdate = this.handleUpdate.bind(this);
     }
 
+    handleUpdate(trip){
+        this.props.app.updateStatus(trip)
+        this.setState({ completed: !this.state.completed });
+    }
 
     render() {
         //TODO: change html elements, css for the trips
         //let aTripExists = this.props.app.allMyTrips[0]
+
+        // let status
+        // if (this.state.completed) {
+        //     status = "Completed"
+        // } else {
+        //   status = "Active"
+        // }
+    
 
         return (
 
@@ -39,7 +52,7 @@ class SubmittedTrip extends React.Component {
                         </div>
                     } */}
 
-                    {this.props.app.allMyTrips.map((trip) =>
+                    {this.state.trips.map((trip) =>
                         <div className="trip" key={trip.id}>
                             <p> <b>Name:</b> {trip.name}</p>
                             <p><b>Distance (Metres):</b> {trip.distance}</p>
@@ -47,10 +60,10 @@ class SubmittedTrip extends React.Component {
                             <p><b>Distance (Miles):</b> {trip.distanceMiles}</p>
                             <p><b>Location</b> {trip.location}</p>
                             <p><b>Elevation:</b> {trip.elevation}</p>
-                                {trip.completed 
-                                        ? <p><b>Status: </b>Completed</p>
-                                        : <p><b>Status: </b>Active</p>
-                                }
+                            <div id="status"> 
+                                <p><b>Status:</b> {trip.completed ? "Completed" : "Active"}</p>
+                                <input type="checkbox" onChange={() => this.handleUpdate(trip)} name="status" />
+                            </div>
                         </div>
                     )}
             </div>
