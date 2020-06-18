@@ -9,6 +9,7 @@ class SubmittedTrip extends React.Component {
             completed: false
         };
         this.handleUpdate = this.handleUpdate.bind(this);
+        this.delete = this.delete.bind(this);
     }
 
     handleUpdate(trip){
@@ -16,44 +17,24 @@ class SubmittedTrip extends React.Component {
         this.setState({ completed: !this.state.completed });
     }
 
+    delete(tripId){
+        this.props.app.removeTrip(tripId)
+        this.setState({ trips: this.props.app.allMyTrips });
+    }
+
     render() {
         //TODO: change html elements, css for the trips
-        //let aTripExists = this.props.app.allMyTrips[0]
-
-        // let status
-        // if (this.state.completed) {
-        //     status = "Completed"
-        // } else {
-        //   status = "Active"
-        // }
-    
-
         return (
 
              <div className="trips">
-            {/* //    {this.props.app.allMyTrips.map((trip) =>    
-                    <h1 key={trip.id}>{trip.name}</h1>
-               )} */}
-                   
-                    {/* {aTripExists &&
-                        <div className="trip">
-                            <h2>Name: {this.props.app.allMyTrips[0].name}</h2>
-                            <h2>Distance (Metres): {this.props.app.allMyTrips[0].distance}</h2>
-                            <h2>Distance (KMs): {this.props.app.allMyTrips[0].distanceKilometers}</h2>
-                            <h2>Distance (Miles): {this.props.app.allMyTrips[0].distanceMiles}</h2>
-                            <h2>Location {this.props.app.allMyTrips[0].location}</h2>
-                            <h2>Elevation: {this.props.app.allMyTrips[0].elevation}</h2>
-                            <h2> 
-                                {this.props.app.allMyTrips[0].completed 
-                                        ? "Status: Completed"
-                                        : "Status: Active"
-                                }
-                            </h2>
-                        </div>
-                    } */}
 
                     {this.state.trips.map((trip) =>
                         <div className="trip" key={trip.id}>
+
+                            <div className="delete">
+                                <div className="deleteButton"><a href="#" className="delete" onClick={() => this.delete(trip.id)}>&times;</a></div>
+                            </div>
+
                             <p> <b>Name:</b> {trip.name}</p>
                             <p><b>Distance (Metres):</b> {trip.distance}</p>
                             <p><b>Distance (KMs):</b> {trip.distanceKilometers}</p>

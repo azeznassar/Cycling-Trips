@@ -2,10 +2,6 @@ import React from 'react';
 import './SubmitForm.css';
 import SubmittedTrip from '../SubmittedTrips/SubmittedTrip';
 
-//import { CyclingTripTracker } from '../../main'
-
-//let theCyclingTripTracker = new CyclingTripTracker()
-
 class SubmitForm extends React.Component {
     constructor(props) {
         super(props);
@@ -51,23 +47,7 @@ class SubmitForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        //theCyclingTripTracker.addTrip(this.state.nameInput, parseInt(this.state.distanceInput, 10), this.state.locationInput, this.state.elevationInput)
-
-        // let distance = parseInt(this.state.distanceInput, 10)
-
-        // let telephone = e.target.value;
-
-        // if (!Number(telephone)) {
-        //     return;
-        // }
-        // if (typeof(distance) === Number) {
-        //     alert("Input digits only! (In metres)",typeof(distance))
         this.props.app.addTrip(this.state.nameInput, parseInt(this.state.distanceInput, 10), this.state.locationInput, this.state.elevationInput)
-        // } else {
-        //     alert("Input digits only! (In metres)")
-        // }
-        //debugging
-        //let trips = theCyclingTripTracker.allMyTrips
         let trips = this.props.app.allMyTrips
         console.log(trips[0])
         console.log(trips[1])
@@ -86,10 +66,9 @@ class SubmitForm extends React.Component {
     render() {
         let trips;
         if (this.state.submitted) {
-
             trips = <SubmittedTrip app={this.props.app}/>
         } else {
-            trips = "Submit a Trip Above"
+            trips = ""
         }
 
         return (

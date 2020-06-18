@@ -93,6 +93,9 @@ export var CyclingTripTracker = /** @class */ (function () {
         this.beforeEditElevationCache = trip.elevation;
         this.editedTrip = trip;
     };
+    CyclingTripTracker.prototype.updateStatus = function (trip) {
+        trip.completed = !trip.completed;
+    };
     CyclingTripTracker.prototype.finalizeUpdate = function (trip) {
         if (!trip) {
             return;
